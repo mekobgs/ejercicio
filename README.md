@@ -1,4 +1,4 @@
-# ejercicio
+# ejercicio Requiere PHP 8+
 
 # Clonar
 git clone https://github.com/eladesarrollo/ejercicio.git

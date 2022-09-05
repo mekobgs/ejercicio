@@ -45,8 +45,9 @@
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm" style="text-align: justify;">
                                     Agregar enlaces para el ejercicio: <br>
-                                    -Mantenimiento de catálogo (CRUD)<br>
+                                    -Catálogos<br>
                                     -Reporte<br>
+                                    -Otros enlaces que considere necesario
                                 </div>
                             </div>
                         </div>

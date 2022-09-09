@@ -14,7 +14,10 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        $projects = projects::latest()->paginate(5);
+
+        return view('projects.index',compact('projects'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +27,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -35,51 +38,71 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'amount' => 'required'
+        ]);
+
+        projects::create($request->all());
+
+        return redirect()->route('projects.index')
+                        ->with('success','project created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Projects  $projects
+     * @param  \App\Models\projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function show(Projects $projects)
+    public function show(projects $project)
     {
-        //
+        return view('projects.show',compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Projects  $projects
+     * @param  \App\Models\projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function edit(Projects $projects)
+    public function edit(projects $project)
     {
-        //
+        return view('projects.edit',compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Projects  $projects
+     * @param  \App\Models\projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Projects $projects)
+    public function update(Request $request, projects $project)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'amount' => 'required'
+        ]);
 
+        $project->update($request->all());
+
+        return redirect()->route('projects.index')
+                        ->with('success','project updated successfully');
+    }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Projects  $projects
+     * @param  \App\Models\project  $projects
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Projects $projects)
+    public function destroy(projects $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('projects.index')
+                        ->with('success','project deleted successfully');
     }
 }

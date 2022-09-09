@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\EmployeesController;
-use app\Http\Controllers\ProjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +13,15 @@ use app\Http\Controllers\ProjectsController;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('inicio');
 });
 
-Route::get('/employees', 'app\Http\Controllers\EmployeesController@index');
+
+Route::resource('employees','EmployeesController');
+Route::resource('projects','ProjectsController');
+//Route::get('/employees', 'app\Http\Controllers\EmployeesController@index');
 //Route::get('/projects', [ProjectsController::class, 'index']);
 

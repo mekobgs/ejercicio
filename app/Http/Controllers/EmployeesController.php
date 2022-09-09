@@ -14,7 +14,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $products = Employees::latest()->paginate(5);
+        $employees = Employees::latest()->paginate(5);
 
         return view('employees.index',compact('employees'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -53,30 +53,30 @@ class EmployeesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Employees  $product
+     * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function show(Employees $product)
+    public function show(Employees $employee)
     {
-        return view('employees.show',compact('employees'));
+        return view('employees.show',compact('employee'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Employees  $product
+     * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employees $product)
+    public function edit(Employees $employee)
     {
-        return view('employees.edit',compact('employees'));
+        return view('employees.edit',compact('employee'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Employees  $product
+     * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Employees $employee)
@@ -95,7 +95,7 @@ class EmployeesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Employee  $product
+     * @param  \App\Models\Employee  $employees
      * @return \Illuminate\Http\Response
      */
     public function destroy(Employees $employee)

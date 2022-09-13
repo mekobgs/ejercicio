@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::resource('employees','EmployeesController');
 Route::resource('projects','ProjectsController');
+Route::resource('assignProject','AssignProjectController');
 //Route::get('/employees', 'app\Http\Controllers\EmployeesController@index');
 //Route::get('/projects', [ProjectsController::class, 'index']);
 
